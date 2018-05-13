@@ -1,11 +1,8 @@
-# Author - Ronit Kishore
-
-# Tensorflow implementation of Spiking Neural Networks
-# Biophysical model (Hodgkin-Huxley model)
-
-# Simulates 1000 neurons for 1000 ms.
-# Each neuron receives (random) 10% of the 100 Poisson spike trains of rate f_rate = 2 Hz between time 200 ms and 700 ms. 
-# Neurons are not inter-connected.
+'''
+Simulates 1000 neurons for 1000 ms.
+Each neuron receives (random) 10% of the 100 Poisson spike trains of rate f_rate = 2 Hz between time 200 ms and 700 ms. 
+Neurons are not inter-connected.
+'''
 
 
 import tensorflow as tf
@@ -61,14 +58,16 @@ with tf.Graph().as_default() as tf_graph:
     v_in = tf.where(fired, tf.ones(tf.shape(v))*c, v)
     u_in = tf.where(fired, tf.ones(tf.shape(u))*tf.add(u, d), u)
 
-    # Update ODE equations
+    '''
+    ODEs to be updated
 
-    # dv =(0.04*v[:,t]+5)*v[:,t]+140−u[:,t]
-    # v(:,t+1) = v[:,t] + (dv+I_app)*dt
-    # du = a*(0.2*v[:,t]−u[:,t])
-    # u[:,t+1] = u[:,t] + dt*du
+    dv =(0.04*v[:,t]+5)*v[:,t]+140−u[:,t]
+    v(:,t+1) = v[:,t] + (dv+I_app)*dt
+    du = a*(0.2*v[:,t]−u[:,t])
+    u[:,t+1] = u[:,t] + dt*du
 
-    # Written below in TF
+    Written below in TF
+    '''
 
     dv = tf.subtract(tf.add(tf.multiply(
                 tf.add(tf.multiply(0.04, v_in), 5.0), v_in), 140), u_in)
