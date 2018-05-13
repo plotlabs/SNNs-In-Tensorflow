@@ -1,5 +1,7 @@
 # Spiking Neural Networks in Tensorflow
-> This project serves as a guide on how implementing **Spiking Neural Networks** in Tensorflow. 
+> A guide on how to implement **Spiking Neural Networks** in Tensorflow. 
+
+Tensorflow does not natively support SNNs, which means using core tf methods and API to implement them.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
